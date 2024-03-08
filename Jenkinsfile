@@ -1,13 +1,13 @@
 pipeline {
     agent any
     stages {
-//        stage('Clone repository') {
-//            steps {
-//                checkout([$class: 'GitSCM',
-//                    branches: [[name: '*/main']],
-//                    userRemoteConfigs: [[url: 'https://github.com/bhapragal/PES1UG21CS190_jenkins.git']]])
-//            }
-//        }
+        stage('Clone repository') {
+            steps {
+                checkout([$class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[url: 'https://github.com/bhapragal/PES1UG21CS190_jenkins.git']]])
+            }
+        }
         stage('Build') {
             steps {
                 build 'PES1UG21CS190-1'
@@ -26,9 +26,9 @@ pipeline {
         }
     }
 
-    post{
-       failure{
-           error: 'Pipeline failed'
-       } 
-    } 
+    post {
+        failure {
+            echo 'Pipeline failed'
+        }
+    }
 }
